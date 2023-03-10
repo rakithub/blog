@@ -1,0 +1,28 @@
+{% extends 'blogs/base.html' %}
+
+{% block page_header %}
+    <h2>Articles</h2>
+{% endblock page_header %}
+
+{% block content %}    
+    <p><a href="{% url 'blogs:new_post' %}" role="button" class="btn btn-primary">Add post</a></p>
+    {% for blogpost in blogposts %}            
+        <div class="card mb-3">
+            <div class="card-header">
+                <h3>{{ blogpost }}</h3>
+                <p>
+                    <time>
+                        <small>{{ blogpost.date_added }}, By <strong>{{ blogpost.author }}</strong></small>
+                    </time>                 
+                </p>
+            </div>
+            <div class="class-body px-4">
+                <p>{{ blogpost.text|linebreaks }}</p>
+                {% if user == blogpost.author %}
+                    <p><a href="{% url 'blogs:edit_post' blogpost.id %}" role="button" class="btn btn-primary">Edit</a></p>       
+                {% endif %}
+            </div>
+        </div>
+
+    {% endfor %}
+{% endblock content %}

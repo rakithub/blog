@@ -1,0 +1,15 @@
+{% extends 'blogs/base.html' %}
+
+{% block page_header %}
+    <div class="jumbotron">
+        <h1 class="display-4">Hot news on SBT TV</h1>
+        <p class="lead">
+            ក្មេងម្នាក់វង្វេងផ្ទះ ឃើញបន្ទប់ក្រោមដីមួយក៏ដើរចូល ស្រាប់តែ..................................................................
+        </p>
+        {% if not user.is_authenticated %}
+            <p class="text-small font-weight-bold">ចុះឈ្មោះក្នុងលីងខាងក្រោមដើម្បីអានពត៌មានពេញ!!!</p>
+            <a href="{% url 'users:register' %}" class="btn btn-large btn-primary" role="button">Register &raquo;</a>    
+        {% endif %}
+        
+    </div>
+    {% endblock page_header %}
